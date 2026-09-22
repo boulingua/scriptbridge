@@ -1,0 +1,24 @@
+name: extension
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - run: npx playwright install --with-deps chromium
+      - name: Chromium smoke test
+        run: |
+          CHROMIUM="$(node -p 'require("@playwright/test").chromium.executablePath()')" npm run test:browser
+      - run: npm run package
+      - uses: actions/upload-artifact@v4
+        with:
+          name: scriptbridge
+          path: dist/scriptbridge-0.1.0.zip

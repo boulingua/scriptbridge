@@ -1,0 +1,29 @@
+# Handover
+
+Read `README.md`, `MAPPINGS.md` and `CURRENT_STATE.md` first. The repository is a local implementation with its own Git history; publishing has not been performed.
+
+## Validate and package
+
+```sh
+npm ci
+npm test
+npm run test:browser
+npm run package
+```
+
+Browser checks use `/usr/bin/chromium`, or `CHROMIUM` if set. They use a disposable profile and extension copy, never the user's browser profile. Runtime code is under `extension/`; install that directory through Chrome's Load unpacked control. The ZIP contains exactly the runtime plus its MIT licence.
+
+## Boundaries
+
+- Transform from stored original text; never repeatedly transform mixed-script output.
+- Preserve site-authored updates when restoring. Do not modify HTML structure, URLs, attributes, form values or editable text.
+- Keep settings local and site access optional. No telemetry, network calls or blanket host grant.
+- Percentages describe eligible letters. Mapping heuristics are approximate; the Nordic set is intentionally sparse.
+- The supplied Azbuka R engine is a different, German transliteration model. Its digraph and umlaut rules have not been represented as sound-equivalent single-letter rules.
+- New mappings need source-language context, reference evidence and regression cases. Keep Greek, Russian and Ukrainian conventions distinct.
+
+## Updating the library
+
+After changing `extension/engine.js`, run the sibling library's `scripts/sync_engine.py`, rebuild its books, and verify all reader/PDF combinations. After packaging, copy the ZIP into the library's `static/downloads/`. The library's code is independently installable; normal builds never reach into this checkout.
+
+Remaining external checks: native permission-consent UI and ordinary browsing in the user's Chrome profile. No store submission is planned. Git commits use the effective configured user identity.

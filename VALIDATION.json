@@ -1,0 +1,12 @@
+{
+  "checked": "2026-09-22",
+  "hosted_ci_verified": false,
+  "published": false,
+  "unit_and_dom_tests": {
+    "passed": 10,
+    "failed": 0
+  },
+  "chromium_integration": "passed; temporary localhost permission fixture; native consent UI not automated",
+  "runtime_network_calls": 0,
+  "archive_sha256": "d78614274eff29130d30030780dc143ae240f98c44242e0ce5269065f4dd26dd"
+}

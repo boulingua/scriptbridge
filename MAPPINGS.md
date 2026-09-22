@@ -1,0 +1,10 @@
+# Sound mappings
+
+The executable table is in `extension/engine.js`. The source language and word context determine eligibility. This is an approximate, deliberately incomplete familiarisation tool, not transliteration or grapheme-to-phoneme conversion. No exhaustive pronunciation accuracy or educational efficacy is claimed.
+
+- **Modern Greek:** consonants such as m→μ, n→ν, p→π, t→τ, k→κ, f→φ, l→λ. β corresponds to /v/, never /b/. English vowels and r are excluded. σ uses final ς where an eligible word-final s is changed. Reference: [Modern Greek Grammar, alphabet](https://www.greekgrammar.eu/pdffiles/greekalphabet.pdf).
+- **Russian Cyrillic:** consonants such as b→б, d→д, m→м, n→н, p→п, f→ф. The engine avoids mechanically using German ö→ё or ü→ю. Palatalisation and vowel reduction cannot be learned from the mixed text. Reference: [Cornell University, Russian alphabet](https://russian.cornell.edu/grammar/html/alphabet.htm).
+- **Ukrainian:** a separate table; hard g→ґ and i→і where source spelling permits. г and и are not borrowed from the Russian table. Context-dependent в is excluded. Reference: [Open University, Ukrainian alphabet](https://www.open.edu/openlearn/mod/oucontent/view.php?id=135721&section=5.1).
+- **Nordic:** Norwegian ø approximates German ö; Norwegian æ is used only for English a in a small explicit /æ/ word list. Swedish ä approximates French è/ê. These are selected letters from distinct languages, not a unified Scandinavian alphabet. References: [NTNU pronunciation](https://www.ntnu.edu/learnnow/1/pronunciation/calst), [Swedish vowel overview](https://blogs.transparent.com/swedish/pronunciation-of-the-swedish-a-a-and-o/).
+
+Source spelling is only a heuristic: loanwords, names, stress, silent letters, dialect and consonant combinations can defeat it. Increasing the percentage increases exposure, not phonetic certainty. Add new languages only with an explicit table, contextual exclusions, a source reference, and positive and negative test cases. Arabic and Persian require bidirectional-text design; Japanese and Chinese are not single-letter alphabets and are not advertised as interchangeable character sets.
