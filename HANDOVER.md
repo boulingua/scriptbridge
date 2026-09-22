@@ -1,6 +1,6 @@
 # Handover
 
-Read `README.md`, `MAPPINGS.md` and `CURRENT_STATE.md` first. The repository is a local implementation with its own Git history; publishing has not been performed.
+Read `README.md`, `MAPPINGS.md` and `CURRENT_STATE.md` first. The public repository is `https://github.com/boulingua/scriptbridge`; publish reviewed commits to `origin/main`.
 
 ## Validate and package
 
