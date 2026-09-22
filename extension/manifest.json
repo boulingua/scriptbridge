@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Boulingua Scriptbridge",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Practise unfamiliar letters while reading. Adjustable, reversible, and processed entirely on your device.",
   "permissions": ["activeTab", "scripting", "storage"],
   "optional_host_permissions": ["https://*/*", "http://*/*"],

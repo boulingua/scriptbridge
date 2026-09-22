@@ -1,13 +1,11 @@
 # Current state — 2026-09-22
 
-Local version 0.1.0. Manifest V3 extension and installable ZIP are implemented. The public repository is `https://github.com/boulingua/scriptbridge`, with `main` as the publication branch. No hosted release or Chrome Web Store submission has been created.
+Version 0.2.0. Public repository: https://github.com/boulingua/scriptbridge, branch `main`. The installable archive is `dist/scriptbridge-0.2.0.zip`. No Chrome Web Store submission or hosted release has been created. Check GitHub Actions for hosted status of the current commit.
 
-English, French and German source languages; Modern Greek, Russian Cyrillic, Ukrainian and selected Nordic target letters. Adjustable 0–100% sampling of eligible letters; three cumulative letter sets; Alt-peek; original-text restoration; optional automatic operation on an explicitly enabled site. Input, editable text, code, attributes and explicit foreign-language islands are protected. No runtime dependencies or network activity.
+English, French and German sources; Greek, one shared Cyrillic option, Nordic, Polish and Czech targets. Legacy Russian/Ukrainian settings migrate to Cyrillic. Nordic and the sparse Latin sets do not use cumulative consonant stages. The popup includes country/language differences and an English/German disclaimer describing the simplified learning exercise.
 
-Verified locally: engine and DOM tests; real Chromium loading and API integration; automatic injection on reload, unregister, site rewrites, dynamic nodes and lossless restoration. The browser harness pregrants only its localhost fixture in a temporary copy and models the action popup's target-tab query. The native permission-consent dialog is not automated. Tests do not establish phonetic correctness for every word, dialect or name.
+Preserved: 0–100% deterministic sampling of eligible letters, Alt peek, original restoration, protected form/editable/code text, dynamic-page handling, optional per-site automatic practice and local-only settings. No runtime network requests or analytics. Sound rules are approximate; 100% does not mean every letter changes.
 
-The same engine is pinned in `../scriptlibrary/third_party/engine.lock.json`; any engine update requires an explicit sync and edition rebuild. The extension ZIP is also distributed by the library.
+Local verification: 12 unit/DOM tests passed; Chromium install, popup, injection, protection, Alt peek, dynamic content and opt-in reload/unregister passed. Native permission-consent UI and everyday use in the user’s browser remain manual checks. The ZIP and engine are synced and hash-verified by the companion library, which now contains twelve books and 192 PDFs.
 
-See `HANDOVER.md` for commands and continuation constraints.
-
-README expanded for fresh clones, usage, troubleshooting, maintenance and licensing on 2026-09-22. Local checks rerun successfully before publication: extension unit/DOM and Chromium integration tests; library PDF/provenance verification, strict production build, 236 local references and browser parity checks.
+See `MAPPINGS.md` for source-language conditions and alphabet references, `HANDOVER.md` for maintenance, and `VALIDATION.json` for local evidence.

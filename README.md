@@ -1,12 +1,12 @@
 # Scriptbridge
 
-A Boulingua Chrome extension for becoming familiar with other alphabets while reading English, French or German. Choose Modern Greek, Russian Cyrillic, Ukrainian, or a small Nordic letter set, then adjust the percentage of eligible letters to replace. Everything runs on your device.
+A Boulingua Chrome extension for becoming familiar with other alphabets while reading English, French or German. Choose Modern Greek, shared Cyrillic, selected Nordic letters, Polish or Czech, then adjust the percentage of eligible letters to replace. Everything runs on your device.
 
 Companion project: [Scriptlibrary](https://github.com/boulingua/scriptlibrary), which uses the same transformation engine for online books and downloadable PDFs.
 
 ## Install
 
-Open `chrome://extensions`, turn on **Developer mode**, choose **Load unpacked**, and select this repository's `extension/` directory. Alternatively unpack `dist/scriptbridge-0.1.0.zip` and select the extracted directory. This is a sideloadable extension, not a Chrome Web Store listing.
+Open `chrome://extensions`, turn on **Developer mode**, choose **Load unpacked**, and select this repository's `extension/` directory. Alternatively unpack `dist/scriptbridge-0.2.0.zip` and select the extracted directory. This is a sideloadable extension, not a Chrome Web Store listing.
 
 ## Read
 
@@ -30,7 +30,7 @@ Node 22 or newer, Python 3 for packaging. Run `npm ci`, `npm test`, and `npm run
 
 The library consumes the same `extension/engine.js`, with an explicit version and SHA-256 lock. Changes to mappings must update tests, then be deliberately synced into the library and its editions rebuilt. Never maintain a separate PDF mapping table.
 
-The supplied Azbuka prototype informed staged introduction, original-text peeking, pristine-source transforms and DOM tests. Its German multi-letter transliteration mode is not enabled here: this project implements sound-oriented **single-letter** practice across four target sets. No byte-parity claim is made for that separate R engine.
+The supplied Azbuka prototype informed staged introduction, original-text peeking, pristine-source transforms and DOM tests. Its German multi-letter transliteration mode is not enabled here: this project implements sound-oriented **single-letter** practice across the supported target sets. No byte-parity claim is made for that separate R engine.
 
 Code: MIT. See [LICENSE](LICENSE).
 
@@ -53,7 +53,7 @@ The browser test otherwise defaults to `/usr/bin/chromium`. On Linux, Playwright
 | Control | Meaning |
 |---|---|
 | Source language | Choose the language of the original page; spelling rules depend on it. |
-| Practice alphabet | Greek, Russian Cyrillic, Ukrainian or selected Nordic letters. |
+| Practice alphabet | Greek, shared Cyrillic, Nordic, Polish or Czech letters. |
 | Letter set | Three cumulative stages introduce more letters; Nordic uses its small fixed set. |
 | Percentage | 0–100% of eligible letters, with stable sampling. |
 | Apply to this page | Apply settings to the current supported page. |
@@ -78,3 +78,8 @@ To uninstall, remove Scriptbridge in `chrome://extensions` and reload previously
 Before changing rules, read [MAPPINGS.md](MAPPINGS.md). Add meaningful pronunciation-context regression cases and retain original restoration, protected fields and site-update behavior. After engine changes, explicitly sync and rebuild the companion library; after packaging, refresh its ZIP and digest lock. Both copies must agree before publication.
 
 [CURRENT_STATE.md](CURRENT_STATE.md) records the implementation checkpoint; [HANDOVER.md](HANDOVER.md) describes continuation commands and constraints; [VALIDATION.json](VALIDATION.json) records the initial local validation evidence. Native Chrome permission prompts and everyday use remain manual checks. Phonetic similarity is approximate, and no learning-effectiveness claim is made.
+
+
+## Shared alphabet introductions
+
+Version 0.2.0 consolidates the previous Russian/Ukrainian options into **Cyrillic**; saved preferences migrate automatically. Its introduction covers countries and representative national differences, while the engine only substitutes a shared subset. Nordic is likewise one option with an explanation of Danish, Norwegian, Swedish and Icelandic differences. Polish and Czech offer limited source-context matches. The popup carries an English/German learning-purpose disclaimer: this is a simplified representation, not a complete alphabet, translation or phonetic transcription.

@@ -3,7 +3,7 @@ const $=id=>document.getElementById(id);
 let tab,origin,initial;
 for(const [value,p]of Object.entries(Scriptbridge.profiles))$('profile').add(new Option(p.label,value));
 function chosen(){return Scriptbridge.settings({source:$('source').value,profile:$('profile').value,percent:$('percent').value,stage:$('stage').value});}
-function preview(){const s=chosen();$('stage').disabled=s.profile==='nordic';$('amount').value=s.percent+'%';$('note').textContent=Scriptbridge.profiles[s.profile].note;const t={en:'The little rabbit felt quite puzzled.',fr:'La mère rêve près de la fenêtre.',de:'Die Vögel fliegen über den großen Garten.'}[s.source];$('preview').textContent=Scriptbridge.transform(t,s).text;}
+function preview(){const s=chosen();$('stage').disabled=Scriptbridge.profiles[s.profile].staged===false;$('amount').value=s.percent+'%';$('note').textContent=Scriptbridge.profiles[s.profile].note;const t={en:'The little rabbit felt quite puzzled.',fr:'La mère rêve près de la fenêtre.',de:'Die Vögel fliegen über den großen Garten.'}[s.source];$('preview').textContent=Scriptbridge.transform(t,s).text;}
 function report(s){$('status').textContent=s.active?`${s.replaced} of ${s.eligible} eligible letters changed.`:'Original text is showing.';}
 async function connect(){await chrome.scripting.executeScript({target:{tabId:tab.id},files:['engine.js','content.js']});}
 async function message(type){return chrome.tabs.sendMessage(tab.id,{type,settings:chosen()});}
@@ -34,7 +34,7 @@ $('always').addEventListener('change',async()=>{
   [tab]=await chrome.tabs.query({active:true,currentWindow:true});
   const {defaults,sites={}}=await chrome.storage.local.get(['defaults','sites']);
   if(!tab?.url||!/^https?:\/\//.test(tab.url))throw Error('unsupported page');
-  origin=new URL(tab.url).origin;initial=sites[origin]||defaults||Scriptbridge.settings();
+  origin=new URL(tab.url).origin;initial=Scriptbridge.settings(sites[origin]||defaults||{});
   $('always').checked=!!sites[origin];
   try{const [{result:lang}]=await chrome.scripting.executeScript({target:{tabId:tab.id},func:()=>document.documentElement.lang});if(['en','fr','de'].includes(Scriptbridge.language(lang)))initial={...initial,source:Scriptbridge.language(lang)};}catch{}
   $('stage').value=initial.stage||3;$('source').value=initial.source;$('profile').value=initial.profile;$('percent').value=initial.percent;preview();
