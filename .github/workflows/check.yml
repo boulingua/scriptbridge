@@ -15,8 +15,7 @@ jobs:
       - run: npm test
       - run: npx playwright install --with-deps chromium
       - name: Chromium smoke test
-        run: |
-          CHROMIUM="$(node -p 'require("@playwright/test").chromium.executablePath()')" npm run test:browser
+        run: npm run test:browser
       - run: npm run package
       - uses: actions/upload-artifact@v4
         with:

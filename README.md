@@ -42,11 +42,11 @@ cd scriptbridge
 npm ci
 npm test
 npx playwright install chromium
-CHROMIUM="$(node -p 'require("@playwright/test").chromium.executablePath()')" npm run test:browser
+npm run test:browser
 npm run package
 ```
 
-The browser test otherwise defaults to `/usr/bin/chromium`. On Linux, Playwright may require system libraries; `npx playwright install --with-deps chromium` installs them. The GitHub Actions workflow runs unit/DOM tests, the Chromium integration test and ZIP packaging on pushes and pull requests. Its downloadable workflow artifact contains the extension ZIP; this does not publish to the Chrome Web Store.
+The browser test uses Playwright’s bundled Chromium. Set `CHROMIUM` only to deliberately test another compatible Chromium executable. On Linux, Playwright may require system libraries; `npx playwright install --with-deps chromium` installs them. The GitHub Actions workflow runs unit/DOM tests, the Chromium integration test and ZIP packaging on pushes and pull requests. Its downloadable workflow artifact contains the extension ZIP; this does not publish to the Chrome Web Store.
 
 ## Controls and troubleshooting
 

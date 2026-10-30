@@ -12,7 +12,7 @@ const fs=require('node:fs/promises'),os=require('node:os'),path=require('node:pa
  const url=`http://127.0.0.1:${server.address().port}/`;
  let context;
  try{
-  context=await chromium.launchPersistentContext(path.join(tmp,'profile'),{executablePath:process.env.CHROMIUM||'/usr/bin/chromium',headless:true,args:['--no-sandbox','--disable-extensions-except='+extension,'--load-extension='+extension]});
+  context=await chromium.launchPersistentContext(path.join(tmp,'profile'),{...(process.env.CHROMIUM ? {executablePath:process.env.CHROMIUM} : {channel:'chromium'}),headless:true,args:['--disable-extensions-except='+extension,'--load-extension='+extension]});
   const manager=await context.newPage();await manager.goto('chrome://extensions/');
   const info=await manager.evaluate(async()=> (await chrome.developerPrivate.getExtensionsInfo({includeDisabled:true,includeTerminated:true})).find(x=>x.name==='Boulingua Scriptbridge'));
   assert.equal(info.state,'ENABLED');assert.deepEqual(info.manifestErrors,[]);assert.deepEqual(info.installWarnings,[]);
