@@ -41,12 +41,19 @@ git clone https://github.com/boulingua/scriptbridge.git
 cd scriptbridge
 npm ci
 npm test
+python3 -m unittest discover -s tests -v
 npx playwright install chromium
 npm run test:browser
 npm run package
 ```
 
 The browser test uses Playwright’s bundled Chromium. Set `CHROMIUM` only to deliberately test another compatible Chromium executable. On Linux, Playwright may require system libraries; `npx playwright install --with-deps chromium` installs them. The GitHub Actions workflow runs unit/DOM tests, the Chromium integration test and ZIP packaging on pushes and pull requests. Its downloadable workflow artifact contains the extension ZIP; this does not publish to the Chrome Web Store.
+
+Packaging takes its version from `extension/manifest.json` and fixes archive
+ordering, timestamps and permissions so filesystem metadata does not change the
+ZIP digest. Runtime code is unchanged in this packaging refinement. Copy the
+final ZIP byte-for-byte into Scriptlibrary and update its extension digest lock;
+do not rebuild a second copy with different metadata.
 
 ## Controls and troubleshooting
 
