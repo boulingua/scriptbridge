@@ -1,7 +1,8 @@
 # Refinement record — 30 October 2026
 
-This is a local engineering candidate on `refine/2026-10-30`. No hosted CI,
-published release or production deployment of these changes has been observed.
+This is an engineering candidate on `refine/2026-10-30`. Exact-revision hosted
+validation is recorded below. No release publication or production deployment
+of these changes has been performed.
 The suite strategy and integration order live in the organisation repository,
 `docs/refinement-2026-10-30.md` and `docs/release-candidate-2026-10-30.md`.
 
@@ -34,5 +35,10 @@ supported browser-tool inventory returned no browsers and the explicit error
 modified. The automated integration test still uses its documented temporary
 localhost grant. The exact remaining check is a clean Chrome profile with the
 final ZIP: install, real action popup, deny/allow optional site access, reload,
-revoke, original restoration and uninstall. Hosted CI and distribution remain
-separate, unobserved acceptance steps for this local candidate.
+revoke, original restoration and uninstall. Hosted CI is recorded below; distribution and native permission acceptance
+remain unobserved.
+
+
+## Hosted candidate verification — 31 October 2026
+
+Commit `414d3bab80e264fcf7a7b1a6ffd452cc5881c20a` passed the [hosted workflow](https://github.com/boulingua/scriptbridge/actions/runs/41203494950) on the review branch. The read-only job passed dependency installation, engine/DOM and packaging tests, isolated Chromium behavior and packaging. Local unchanged Chromium reruns have intermittent apply-step timeouts under investigation; preserve that limitation alongside the successful Linux run. Native consent-dialog acceptance and store publication remain unobserved.
